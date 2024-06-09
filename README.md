@@ -2,7 +2,7 @@
 1. algorytm podpisu elGammala
 2. algorytm podpisu DSA
 # Uruchomienie programu:
-- plik 'gui'
+- plik 'dist/gui/gui'
 # Funkcjonalność:
 - wybór algorytmu podpisu
 - wczytywanie dokumentu do podpisu/weryfikacji podpisu
