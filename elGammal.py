@@ -34,26 +34,6 @@ class elGammal:
         p, g, y = key
         h_m = int(sha1(msg.encode()).hexdigest(), 16)
         return (pow(y, a) * pow(a, b)) % p==pow(g, h_m, p)
-
-    def export_own_public_key(self, filepath, key='public'):
-        with open(filepath, 'w') as f:
-            if key=='public':
-                k = (self.p, self.g, self.public_key)
-            elif key=='private':
-                k = (self.p, self.g, self.private_key)
-            f.write(",".join(map(str, k)))
-
-    def load_foreign_public_key(self, fp):
-        with open(fp, 'r') as f:
-            p, g, y = tuple(map(int, f.readline().split(",")))
-        return p, g, y
-    
-    def load_message(self, fp):
-        with open(fp, "r") as file:
-            lines = [line.rstrip() for line in file]
-            print(lines)
-            msg = "\n".join(lines)
-        return msg
     
 if __name__ == "__main__":
     eg = elGammal(20)
@@ -65,5 +45,3 @@ if __name__ == "__main__":
     print(eg.private_key)
     print(eg.public_key)
     print(eg.verify(m, eg.public_key, a, b, eg.p, eg.g))
-
-# TODO : dlaczego takie wolne

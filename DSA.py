@@ -53,26 +53,7 @@ class DSA:
         u2 = (r * w) % q
         v = ((pow(g, u1, p) * pow(y, u2, p)) % p) % q
         return v == r
-    
-    def export_own_public_key(self, filepath, key='public'):
-        with open(filepath, 'w') as f:
-            if key=='public':
-                k = (self.q, self.p, self.g, self.public_key)
-            elif key=='private':
-                k = (self.q, self.p, self.g, self.private_key)
-            f.write(",".join(map(str, k)))
 
-    def load_foreign_public_key(self, fp):
-        with open(fp, 'r') as f:
-            q, p, g, y = tuple(map(int, f.readline().split(",")))
-        return q, p, g, y
-    
-    def load_message(self, fp):
-        with open(fp, "r") as file:
-            lines = [line.rstrip() for line in file]
-            print(lines)
-            msg = "\n".join(lines)
-        return msg
 
 if __name__ == "__main__":
     dsa1 = DSA()
